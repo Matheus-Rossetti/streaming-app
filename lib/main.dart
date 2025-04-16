@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:streaming_app/video_player.dart';
 
 void main() {
   runApp(const StreamingApp());
@@ -11,10 +12,15 @@ class StreamingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       checkerboardOffscreenLayers: false,
       title: 'Streaming App',
-      home: MainMenu(),
+      home: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 500),
+          child: MainMenu(),
+        ),
+      ),
     );
   }
 }
@@ -71,16 +77,36 @@ class _ContainerCardState extends State<ContainerCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 180,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xffBFA08E),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10, top: 0),
-          child: Text(widget.index.toString(), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
+          );
+        },
+        child: Container(
+          height: 180,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color(0xffBFA08E),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, top: 0),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  '- CLIQUE AQUI - Único video que tem, compilado de The Finals. Não tem thumbnail :(',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
