@@ -31,6 +31,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.dispose();
   }
 
+  void _togglePlayPause() {
+    if (_controller.value.isPlaying) {
+      _controller.pause();
+    } else {
+      _controller.play();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!_controller.value.isInitialized) {
@@ -38,13 +46,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
+          GestureDetector(
+            onTap: _togglePlayPause,
+            child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller),
+            ),
           ),
           Center(
             child: Text(

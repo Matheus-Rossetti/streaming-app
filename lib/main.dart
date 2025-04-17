@@ -7,20 +7,20 @@ void main() {
 
 // COLORS: 0xff430027, B13123, CE6627, BFA08E, 300227
 
-class StreamingApp extends StatelessWidget {
+class StreamingApp extends StatefulWidget {
   const StreamingApp({super.key});
 
+  @override
+  State<StreamingApp> createState() => _StreamingAppState();
+}
+
+class _StreamingAppState extends State<StreamingApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       checkerboardOffscreenLayers: false,
-      title: 'Streaming App',
-      home: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 500),
-          child: MainMenu(),
-        ),
-      ),
+      title: 'Toscaflix',
+      home: MainMenu(),
     );
   }
 }
@@ -40,17 +40,20 @@ class _MainMenuState extends State<MainMenu> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Text(
-              'Streaming App',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            backgroundColor: Color(0xffB13123),
+            backgroundColor: Colors.orange,
             pinned: true,
             floating: true,
             expandedHeight: 200,
+            stretch: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                'Toscaflix',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
