@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '/video_player.dart';
 
+import 'video_card.dart';
 
 class UserVideosCard extends StatefulWidget {
   const UserVideosCard({super.key, required this.index});
@@ -16,34 +16,37 @@ class _UserVideosCardState extends State<UserVideosCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
-          );
-        },
-        child: Container(
-          height: 180,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color(0xffBFA08E),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, top: 0),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  '- CLIQUE AQUI - Único video que tem, compilado de The Finals. Não tem thumbnail :(',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+      child: SizedBox(
+        height: 200,
+        width: double.infinity,
+        child: Expanded(
+          child: Container(
+            color: Colors.blue,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [CircleAvatar(), Text('Nome do usuário')],
                   ),
                 ),
-              ),
+                Expanded(
+                  child: LayoutBuilder(
+                    builder:
+                        (context, constraints) => SizedBox(
+                          child: ListView.builder(
+                            itemCount: 5,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder:
+                                (context, index) => VideoCard(
+                                  height: constraints.maxHeight,
+                                  width: (constraints.maxHeight * 16 / 9),
+                                ),
+                          ),
+                        ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

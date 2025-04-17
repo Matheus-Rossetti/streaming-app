@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'widgets/user_videos_card.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -32,7 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => UserVideosCard(index: index),
+              childCount: 2,
+              (context, index) => UserVideosCard(index: index),
             ),
           ),
         ],
@@ -40,4 +43,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

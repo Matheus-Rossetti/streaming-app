@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:streaming_app/video_player.dart';
-
 import 'home_screen.dart';
 
 void main() {
