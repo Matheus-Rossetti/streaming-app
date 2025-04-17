@@ -32,11 +32,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   void _togglePlayPause() {
-    if (_controller.value.isPlaying) {
-      _controller.pause();
-    } else {
-      _controller.play();
-    }
+    _controller.value.isPlaying ? _controller.pause() : _controller.play();
   }
 
   @override
