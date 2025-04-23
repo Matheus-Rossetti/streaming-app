@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
 
-class VideoCard extends StatelessWidget {
-  const VideoCard({super.key, required this.height, required this.width});
+class VideoCard extends StatefulWidget {
 
-  final double height;
-  final double width;
+  final int index;
+  const VideoCard({super.key, required this.index});
 
   @override
+  State<VideoCard> createState() => _VideoCardState();
+}
+
+class _VideoCardState extends State<VideoCard> {
+  @override
   Widget build(BuildContext context) {
-    return Padding( // TODO Fix this padding, for some reason it changes the aspect ratio if applied for top and bottom
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-      child: Container(
-        width: width,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(child: Text('h: $height | w: $width')),
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: LayoutBuilder(
+        builder:
+            (context, constraints) => ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Stack(
+                children: [
+                  Image.network(
+                    'https://picsum.photos/1280/720?random=${widget.index}',
+                    width: constraints.maxHeight * 16 / 9,
+                  ),
+                  Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Nome do vídeo',
+                        style: TextStyle(
+
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),),
+                  ),
+
+                ],
+              ),
+            ),
       ),
     );
   }
