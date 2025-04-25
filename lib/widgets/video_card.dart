@@ -20,7 +20,7 @@ class _VideoCardState extends State<VideoCard> {
               borderRadius: BorderRadius.circular(10),
               child: Stack(
                 children: [
-                  Image.network(
+                  Image.network( // TODO change for cached_image_network package
                     'https://picsum.photos/1280/720?random=${widget.index}',
                     width: constraints.maxHeight * 16 / 9,
                   ),

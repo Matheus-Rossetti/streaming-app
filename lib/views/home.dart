@@ -31,7 +31,7 @@ class _MainMenuState extends State<MainMenu> {
             backgroundColor: Color(0xffB13123),
             pinned: true,
             floating: true,
-            expandedHeight: 200,
+            expandedHeight: 100,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(

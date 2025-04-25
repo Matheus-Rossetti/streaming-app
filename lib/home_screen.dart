@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/user_videos_card.dart';
+import 'widgets/user_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.orange,
             pinned: true,
             floating: true,
-            expandedHeight: 200,
+            expandedHeight: 150,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
@@ -34,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              childCount: 2,
-              (context, index) => UserVideosCard(index: index),
+              childCount: 5,
+              (context, index) => UserSection(),
             ),
           ),
         ],
